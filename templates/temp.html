@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    <h2 class="border-bottom">Temperature Sensor Readings</h2>
+    <iframe
+      width="450"
+      height="260"
+      src="https://thingspeak.com/channels/1572922/charts/1?bgcolor=%23212529&color=%23ffffff&dynamic=true&results=60&title=Room+Temperature&type=line&xaxis=Timestamp&yaxis=Temperature+%28C%29&update=1"
+    ></iframe>
+  </div>
+</div>
+
+{% endblock content %}

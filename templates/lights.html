@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container bg-dark">
+  <h2 class="border-bottom">Lights Sensor Reading</h2>
+  <div class="row">
+    <iframe
+      width="450"
+      height="260"
+      src="https://thingspeak.com/channels/1572922/widgets/381858?bgcolor=%23212529&color=%23ffffff"
+    ></iframe>
+  </div>
+  <br />
+  <div class="row">
+    <h2 class="border-bottom">Garden Light Status</h2>
+    <iframe
+      width="450"
+      height="260"
+      src="https://thingspeak.com/channels/1572922/widgets/381860?bgcolor=%23212529&color=%23ffffff"
+    ></iframe>
+  </div>
+</div>
+
+{% endblock content %}

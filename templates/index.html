@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    <h2 class="border-bottom mt-lg-5 mb-lg-6 mt-4 mb-5">Dashboard</h2>
+
+    <div class="col-lg py-2 py-lg-0 text-center">
+      <button
+        class="btn btn-outline-warning btn-lg"
+        onclick="fetch('/anim/door')"
+      >
+        <span class="material-icons"> door_front </span>Front Door
+      </button>
+    </div>
+    <div class="col-lg py-2 py-lg-0 text-center">
+      <button
+        class="btn btn-outline-warning btn-lg"
+        onclick="fetch('/anim/garage_door')"
+      >
+        <span class="material-icons"> cabin </span>Garage Door
+      </button>
+    </div>
+    <div class="col-lg py-2 py-lg-0 text-center">
+      <button
+        class="btn btn-outline-warning btn-lg"
+        onclick="fetch('/anim/garage_lights')"
+      >
+        <span class="material-icons"> light </span>Garage Lights
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock content %}
