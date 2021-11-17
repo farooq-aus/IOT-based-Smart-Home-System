@@ -39,5 +39,7 @@ def intruder():
 def connection(json):
     print(json)
 
-if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
+# if __name__ == '__main__':
+def start_server():
+    socketio.run(app, host='0.0.0.0', port=5000) # debug only works when run as main thread
+    print('Server running...')
