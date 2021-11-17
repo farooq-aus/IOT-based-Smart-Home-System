@@ -1,9 +1,10 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send, emit
 import requests
+from env import ANIMATION_SERVER_IP
 app = Flask(__name__)
 socketio = SocketIO(app)
-ip = '192.168.137.89'
+#ip = '192.168.137.89'
 
 @app.route('/')
 def index():
@@ -11,12 +12,16 @@ def index():
 
 @app.route('/anim/<thing>')
 def door(thing):
-    requests.get('http://'+ ip +':5555/'+ thing)
+    requests.get('http://'+ ANIMATION_SERVER_IP +'/'+ thing)
     return 'OK'
 
 @app.route('/door-feed')
 def door_feed():
     return render_template('door.html')
+
+@app.route('/motion')
+def motion():
+    return render_template('motion.html')
 
 @app.route('/lights')
 def lights():
@@ -35,11 +40,26 @@ def intruder():
     socketio.emit('intruder', 'intruder')
     return 'OK'
 
-@socketio.on('connection')
-def connection(json):
-    print(json)
+@app.route('/motiond')
+def motiond():
+    socketio.emit('motiond', 'motiond')
+    return 'OK'
 
-# if __name__ == '__main__':
+@app.route('/fire/<temp>')
+def fire(temp):
+    socketio.emit('fire', str(temp))
+    return 'OK'
+
+@socketio.on('json')
+def handle_json(json):
+    print('received json: '+ str(json))
+    emit('intruder', 'intruder') 
+
+#if __name__ == '__main__':
 def start_server():
-    socketio.run(app, host='0.0.0.0', port=5000) # debug only works when run as main thread
-    print('Server running...')
+    print('Server running...')  
+    socketio.run(app, host='0.0.0.0', port=5555) # debug only works when run as main thread
+    
+    
+#start_server()
+    

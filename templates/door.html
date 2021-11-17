@@ -1,3 +1,24 @@
-{% extends 'base.html' %} {% block content %}
-<h2 class="border-bottom">This is door feed!</h2>
+{% block title %}Door Feed{% endblock title %}{% extends 'base.html' %} {% block content %}
+
+
+<div class="container">
+    <h2 class="border-bottom">Door Camera Feed</h2>
+<h6>Intruder image captured during last break-in attempt.</h6>
+<br>
+ <div class="row">
+	<div class="d-flex justify-content-center">
+		<img id="int" class="img-fluid" src="static/intruder.jpeg">
+	</div>
+
+  </div>
+</div>
+
+<script>
+
+window.addEventListener('load', function() {
+    document.getElementById("int").src = "static/intruder.jpeg?" + new Date().getTime();
+})
+
+</script>
+
 {% endblock content %}
