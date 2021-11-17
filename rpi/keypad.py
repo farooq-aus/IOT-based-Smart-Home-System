@@ -155,6 +155,7 @@ class Keypad:
                 wrong_count += 1
                 if wrong_count == 3:
                     wrong_count = 0
+                    self.camera.annotate_text = time.ctime()
                     self.camera.capture('static/intruder.jpeg', 'jpeg')
                     requests.get('http://localhost:5555/intruder') # send alert
                     trigger[0] = True # sound alarm

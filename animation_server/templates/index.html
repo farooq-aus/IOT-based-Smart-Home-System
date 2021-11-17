@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+    <style>
+      
+
+    .image1 {
+      position: relative;
+      top: 0;
+      left: 0;
+      border: 1px red solid;
+    }
+    .image2 {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      border: 1px green solid;
+    }
+
+
+      .front{
+        position: relative;
+        top: 0;
+      left: 0;
+      z-index: 1;
+      }
+      .backDoor
+      {
+
+
+        position: absolute;
+        top: 149px;
+        left: 264px;
+        filter: brightness(80%);
+
+        z-index: 3;
+
+
+      }
+
+      .door
+      {
+        /* https://down.imgspng.com/download/0720/door_PNG17568.png */
+
+        position: absolute;
+        top: 135px;
+        left: 250px;
+        z-index: 4;
+
+      
+        transform-origin: left;
+        /*Speed of the Door animation*/
+        transition: all 0.5s ease-in-out;
+      }
+
+      .garageLightOn
+      {
+        position: absolute;
+        top: 210px;
+        left: 800px;
+        z-index: 8;
+        visibility: hidden;
+      }
+
+
+      .sky
+      {
+        position: absolute;
+        top: -40px;
+        left: 745px;
+        z-index: 8;
+      }
+
+      .gDoor
+      {
+        position: absolute;
+        top: 172px;
+        left: 763px;
+        z-index: 7;
+
+        transform-origin: top; 
+        /*Speed of the Door animation*/
+        transition: all 1.5s ease;
+        /* clip-path: inset(0% 0% 0% 0%); */
+
+        /* transition: clip-path 1s; */
+      }
+
+      .gBackDoor
+      {
+
+
+        position: absolute;
+        top: 172px;
+        left: 763px;
+
+        z-index: 6;
+
+
+      }
+
+      .gDoorOpen
+      {
+        /* clip-path: inset(0% 0% 100% 0%); */
+        /*prespectiv creates the door open effect*/
+        /* transform: perspective(1200px) translateZ(0px) translateX(0px) translateY(0px) rotateX(105deg); */
+        transform: translateY(-560px);
+      }
+
+      .doorOpen
+      {
+        /*prespectiv creates the door open effect*/
+        transform: perspective(1200px) translateZ(0px) translateX(0px) translateY(0px) rotateY(-105deg);
+      }
+
+    </style>
+  </head>
+
+<body>
+
+  <div>
+    <img id="front" class = "front" src="static/front2.jpg">
+    <img class = "backDoor" src="static/interior.jpg">
+    <img class = "door" src="static/door.jpg">
+    <img id="glight" class = "garageLightOn" src="static/garage_light_on.jpg">
+    <img id="gDoor" class = "gDoor" src="static/gdoor.jpg">
+    <img class = "gBackDoor" src="static/ginterior.jpg">
+    <img class = "sky" src="static/sky.jpg">
+
+
+  </div>
+
+
+    <!-- <div class="front">
+
+      <div class="backDoor">
+        <div class="door">
+        </div>
+      </div>
+
+    </div> -->
+
+    
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf-8">
+
+
+    var socket = io();
+
+    socket.on('connect', function() {
+        socket.emit('conn_ack', {data: 'I\'m connected!'});
+    });
+
+    socket.on("door_toggle", data => {
+      console.log(data);
+      var element = document.querySelector(".door");    
+      element.classList.toggle("doorOpen");
+    });
+
+    socket.on("garage_lights", data => {
+      console.log(data);
+      // document.getElementById("front").src = (data == "0") ? "static/front-glight-off.jpg" : "static/front-glight-on.jpg";
+      document.getElementById("glight").style.visibility= (data == "0") ?"hidden":"visible";
+    });
+
+
+    socket.on("garage_door", data => {
+      console.log(data);
+      var element = document.querySelector(".gDoor");    
+      element.classList.toggle("gDoorOpen");
+    });
+
+
+
+</script>
+
+  </body>
+</html>
+

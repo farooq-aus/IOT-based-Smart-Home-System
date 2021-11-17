@@ -35,6 +35,7 @@ class PIR:
         if diff < 1.5 and self.enable:
             print('Motion detected')
             os.system('rm motion.h264 static/motion.mp4') 
+            self.camera.annotate_text = time.ctime()
             self.camera.start_recording('motion.h264')
             self.camera.wait_recording(5)
 #            time.sleep(5)
