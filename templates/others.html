@@ -1,4 +1,15 @@
 {% extends 'base.html' %}
+{% block title %}Emergency Helplines{% endblock title %}
 {% block content %}
+
+
+<div class="container">
+    <h2 class="border-bottom">Emergency Helpline Numbers</h2>
+    <div class="row text-center">
+        <div class="col-md g-3"><a href="tel:999"><img style="width: 50%" src="static/police.jpg"></a></div>
+        <div class="col-md g-3"><a href="tel:998"><img style="width: 50%" src="static/ambulance.jpg"></a></div>
+        <div class="col-md g-3"><a href="tel:997"><img style="width: 50%" src="static/fire.jpg"></a></div>
+    </div>
+</div>
 
 {% endblock content %}

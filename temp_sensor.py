@@ -9,7 +9,11 @@ class Temp_sensor:
         alerted = False
         while True:
             ADC_units = self.ADC.read(0)
-            temp = (ADC_units/255) *200
+            
+            ADC_volts = (ADC_units/255) *3.3
+            # sensor eq: 20mV / degC
+            temp = 15 + (ADC_volts/0.02)
+
             requests.get('https://api.thingspeak.com/update?api_key=36WELVGBQKL6YB1D&field1='+str(temp))
             if temp > 100:
                 trigger[0] = True

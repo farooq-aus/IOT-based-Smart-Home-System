@@ -1,13 +1,15 @@
-{% block title %}Temperature{% endblock title %}{% extends 'base.html' %} {% block content %}
-<div class="container">
+{% extends 'base.html' %} 
+{% block title %}Temperature{% endblock title %}
+{% block content %}
+<div id="cont" class="container">
+  <h2 class="border-bottom">Temperature Sensor Readings</h2>
   <div class="row">
-    <h2 class="border-bottom">Temperature Sensor Readings</h2>
-    <iframe
+    <iframe id="ifr"
       width="450"
-      height="260"
+      height="360"
       src="https://thingspeak.com/channels/1572922/charts/1?bgcolor=%23212529&color=%23ffffff&dynamic=true&results=60&title=Room+Temperature&type=line&xaxis=Timestamp&yaxis=Temperature+%28C%29&update=1"
     ></iframe>
-  </div>
+  </div>  <br />
 </div>
 
 {% endblock content %}
